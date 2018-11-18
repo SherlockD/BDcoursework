@@ -7,12 +7,16 @@
 
 body { 
     background-color: #DCDCDC;
+margin:0px;
+padding:0px;
+height: 100%;
     font-family: 'Roboto', sans-serif;
 }
 
 #header {
-    border: 1px solid #b5b7ba;
+    border: 1 px solid #b5b7ba;
     background-color: #F08080;
+font-size:  100%;
     min-width: 1366px;
     height: 50px;
     text-align: center;
@@ -24,17 +28,17 @@ body {
 }
 
 #center {
-    width: 1366px;
+    width: 100%;
     margin: 0 auto;
 }
 
 #header a {
     color: #4d4d4d;
     font-size: 20px;
-    font-weight: 100;
+    font-weight: 100%;
     text-align: left;
     text-decoration: none;
-    height: 30px;
+    height: 10%;
     line-height: 30px;
     display: inline-block;
 }
@@ -44,14 +48,14 @@ body {
 }
 
 #content  {
-    height: 766px;
-    min-width: 1200px;
+    height: 95%;
+    min-width: 95%;
     margin: 0 auto;
 
 }
 
 #content h1 {
-    min-width: 1366px;
+    min-width: 100%;
     text-align: center;
     color: #2e353d;
     font-size: 40px;
@@ -61,7 +65,11 @@ body {
 }
 
 #content #box_text {
-    width: 1350px;
+position: relative;
+padding: 10px;
+  width: 90%;
+ height: 90%;
+    width: 98%;
    background-color: #ffffff;
     float: left
    
@@ -93,11 +101,13 @@ margin: 10px 383px;
 
 #content #box {
     background-color: #ffffff;
-    width: 1238px;
-    height: 446px;
+ position:relative;
+    width: 90%;
+    height: 90%;
     margin: 0 auto;
     padding-top: 37px;
     padding-left: 38px;
+
 }
 
 #content #box p {
@@ -139,9 +149,16 @@ margin: 10px 383px;
 
 #footer {
     background-color: #434445;
-    min-width: 1366px;
-    height: 200px;
-    margin: 380px 0px 0px 0px;
+    min-width: 100%;
+margin: 0 auto;
+position:fixed;
+clear:both;
+ width: 90%;
+ left: 0;
+ bottom: 0;
+    height: 180px;
+    margin-top: -180px;
+    margin-bottom: 0;
     text-align: center;
     color: #a4a4a4;
     font-size: 20px;
