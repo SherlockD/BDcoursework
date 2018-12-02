@@ -17,13 +17,13 @@ $password = '72qwerty72';
 
 function bdConnect()
 {
-    return  mysql_connect ("localhost", "swlddhzn_admin","72qwerty72") or die("Error" .mysql_error());
+    return  mysql_connect ("localhost", "superuser","123") or die("Error" .mysql_error());
 }
 
 function executeRequest($query)
 {
-	$link = mysql_connect ("localhost", "swlddhzn_admin","72qwerty72") or die("Error" .mysql_error());
-	$db = mysql_select_db("swlddhzn_siteBD",$link);
+	$link = mysql_connect ("localhost", "superuser","123") or die("Error" .mysql_error());
+	$db = mysql_select_db("bd",$link);
 	$result = mysql_query($query) or die("Error " . mysql_error());	
 	mysql_close($link);
 	
@@ -48,9 +48,9 @@ function out()
 	header("Location: http://persas.u-host.in/cource/index.php");
 }
 
-function isAdmin($id)
+/*function isAdmin($id)
 {
-	$query = "SELECT is_admin FROM test_table WHERE user_id='$id'";
+	$query = "SELECT is_admin FROM users WHERE user_id='$id'";
 	$queryResult = executeRequest($query);
 	if(mysql_num_rows(queryResult) == 1)
 	{
@@ -62,7 +62,7 @@ function isAdmin($id)
 	}
 	return false;
 }
-
+*/
 function enter()
 {
 	$errors = array();
@@ -72,7 +72,7 @@ function enter()
 		$login = $_POST['user_login'];
 		$password = $_POST['user_password'];
 		
-		$query = "SELECT * FROM test_table WHERE user_login='$login'";
+		$query = "SELECT * FROM users WHERE user_login='$login'";
 		
 		$queryResult = executeRequest($query);
 		

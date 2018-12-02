@@ -40,7 +40,7 @@
 	{
 		session_start();
 		$UID = $_SESSTION['user_id'];
-		$admin = isAdmin($UID);	
+		//$admin = isAdmin($UID);	
 		header("Location: http://persas.u-host.in/cource/index.php");
 	}
 	 else
