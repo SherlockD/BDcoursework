@@ -6,8 +6,10 @@
 	$password = $_POST['user_password'];
 	$fio = $_POST['fio'];
 	$date = $_POST['birth_date'];
-	$gender = $_POST['gender'];
+	$gender = isset($_POST['gender'])?1:0;
 	$password = md5($password);
+	
+	
 	
 	$querychech = "SELECT user_login FROM users WHERE user_login='$login'";
 	
