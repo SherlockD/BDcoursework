@@ -1,10 +1,10 @@
 <?
 include("autorization.php");
 
-$id  = $_POST['id'];
+$id  = htmlspecialchars($_POST['id']);
 
 $getloginquery = "SELECT client_login FROM clientage WHERE client_id='$id'";
-$getlogin = mysql_fetch_assoc(executeRequest($getloginquery));
+$getlogin = mysql_fetch_assoc(executeRequest($getloginquery),ENT_QUOTES);
 
 $login = $getlogin['client_login'];
 

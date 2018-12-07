@@ -1,10 +1,10 @@
 <?
 include("autorization.php");
 
-$id  = $_POST['id'];
-$fio  = $_POST['fio'];
-$type  = $_POST['type'];
-$adress  = $_POST['adress'];
+$id  = htmlspecialchars($_POST['id'],ENT_QUOTES);
+$fio  = htmlspecialchars($_POST['fio'],ENT_QUOTES);
+$type  = htmlspecialchars($_POST['type'],ENT_QUOTES);
+$adress  = htmlspecialchars($_POST['adress'],ENT_QUOTES);
 
 
 $query = "UPDATE clientage SET fio='$fio',property_type='$type',property_adress='$adress'";

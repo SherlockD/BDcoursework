@@ -2,10 +2,10 @@
 	include("autorization.php");
 	header('Content-Type: text/html; charset=utf-8');
 	
-	$login = $_POST['user_login'];
-	$password = $_POST['user_password'];
-	$fio = $_POST['fio'];
-	$date = $_POST['birth_date'];
+	$login = htmlspecialchars($_POST['user_login'],ENT_QUOTES);
+	$password = htmlspecialchars($_POST['user_password'],ENT_QUOTES);
+	$fio = htmlspecialchars($_POST['fio'],ENT_QUOTES);
+	$date = htmlspecialchars($_POST['birth_date'],ENT_QUOTES);
 	$gender = isset($_POST['gender'])?1:0;
 	$password = md5($password);
 	

@@ -1,7 +1,7 @@
 <?
 include("autorization.php");
 
-$id  = $_POST['id'];
+$id  = htmlspecialchars($_POST['id'],ENT_QUOTES);
 
 $query = "DELETE FROM employees WHERE employee_id='$id'";
 

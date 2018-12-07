@@ -1,4 +1,11 @@
-<?php include("php/autorization.php"); ?>
+<?php 
+if(isset($_POST['log_out']))
+    {
+        setcookie('user_login',"");
+		echo '<script>window.location="../index.php"</script>';
+    }
+include("php/autorization.php");
+$error = enter(); ?>
 
 <!DOCTYPE HTML> 
 <html>
@@ -26,8 +33,8 @@
 	if(login())
     {    
 		$admin = isAdmin();
-		echo "<p>Добро пожаловать:</p>";echo $_SESSION['user_login'];
-        echo "<form action='php/autorization.php' method='POST'>
+		echo "<p>Добро пожаловать:</p>";echo $_COOKIE['user_login'];
+        echo "<form action='index.php' method='POST'>
 		<input type='submit' value='Выход' name = 'log_out' />
 	     </form>";
 		 if($admin)
@@ -44,8 +51,6 @@
 		Пароль<input type='password' name='user_password' value='' />
 		<input type='submit' value='Войти' name = 'log_in' />
 	</form>	";
-	
-	$error = enter();
 		
 	if(count($error) == 0)
 	{

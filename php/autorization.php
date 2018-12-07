@@ -7,16 +7,6 @@ $database = 'swlddhzn_siteBD';
 $user = 'swlddhzn_admin';
 $password = '72qwerty72';
 
-
-    if(isset($_POST['log_out']))
-    {
-        echo "log out";
-        out();
-		echo '<script>window.location="../index.php"</script>';
-    }
- 
-
-
 function bdConnect()
 {
     return  mysql_connect ("localhost", "superuser","123") or die("Error" .mysql_error());
@@ -35,24 +25,17 @@ function executeRequest($query)
 function login()
 {
 	//session_start();
-	if(isset($_SESSION['user_login']))
+	if(isset($_COOKIE['user_login']))
 	{
 		return true;
 	}
 	return false;
 }
 
-function out()
-{
-	unset($_SESSION['user_login']);
-	session_destroy();
-	
-}
 
 function isAdmin()
 {
-	session_start();
-	$id = $_SESSION['user_login'];
+	$id = $_COOKIE['user_login'];
 	$query = "SELECT is_admin FROM users WHERE user_login='$id'";
 	$queryResult = executeRequest($query);
 	if(mysql_num_rows($queryResult) == 1)
@@ -70,10 +53,12 @@ function enter()
 {
 	$errors = array();
 	
+	if(!isset($_COOKIE['user_login']))
+	{
 	if($_POST['user_login'] !="" && $_POST['user_password'] != "")
 	{
-		$login = $_POST['user_login'];
-		$password = $_POST['user_password'];
+		$login = htmlspecialchars($_POST['user_login'],ENT_QUOTES);
+		$password = htmlspecialchars($_POST['user_password'],ENT_QUOTES);
 		
 		$query = "SELECT * FROM users WHERE user_login='$login'";
 		
@@ -83,8 +68,13 @@ function enter()
 		{
 			$result = mysql_fetch_assoc($queryResult);
 			if(md5($password) == $result['user_password'])
-			{				
-				$_SESSION['user_login'] = $result['user_login'];	
+			{		
+				$user_login_result = $result['user_login'];
+				if(setcookie('user_login',$user_login_result,time()+3600))
+				{
+					return $errors;
+				}
+				$errors[] = "Не удалось установить куки";
 				return $errors;
 			}
 			else
@@ -103,6 +93,7 @@ function enter()
 	{
 		$errors[] = "Введите имя пользователя и пароль";
 		return $errors;
+	}
 	}
 }
 ?>

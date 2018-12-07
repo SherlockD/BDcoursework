@@ -1,8 +1,8 @@
 <?
 include("autorization.php"); 
 
-$id = $_POST['id'];
-$userlogin = $_SESSION['user_login'];
+$id = htmlspecialchars($_POST['id'],ENT_QUOTES);
+$userlogin = $_COOKIE['user_login'];
 
 $take_id = "SELECT client_id FROM clientage WHERE client_login='$userlogin'";
 
