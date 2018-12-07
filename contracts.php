@@ -18,8 +18,34 @@
 
 <div id="content">
 <?
-
+	$query = "SELECT * FROM contracts";
+	$result = executeRequest($query);
+		
+		if(mysql_num_rows($result) > 0)
+		{
+			//$result = mysql_fetch_assoc($result);
+			
+			$rows = array();
+			while ($row = mysql_fetch_assoc($result)) 
+			{ 
+				$rows[] = $row; 
+			}
+			
+			printf("<table border='1'>");
+			printf("<tr><td>ID контракта</td><td>ID клиента</td><td>Код недвижимости</td><td>Стоимость</td><td>Дата заключения</td></tr>");
+			foreach($rows as $value)
+			{
+				printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",$value['contract_id'],$value['client_id'],$value['property_code'],$value['cost'],$value['conclusion_date']);
+			}
+			printf("</table>");
+		}
 ?>
+
+<form action='php/terminate.php' method='POST'>
+		ID<input type='text' name='id' value='' />
+		<input type='submit' value='Удалить'/>
+</form>
+
 </div>	
 
  <div id="footer">
