@@ -1,7 +1,7 @@
 <?php 
 if(isset($_POST['log_out']))
     {
-        setcookie('user_login',"");
+        setcookie('user_email',"");
 		echo '<script>window.location="../index.php"</script>';
     }
 include("php/autorization.php");
@@ -18,12 +18,12 @@ $error = enter(); ?>
 <body>
 <div id="header">
 <i><a id="selected" href="#">Главная</a><span>/</span></i>
-	<a href="info.html">О нас</a><span>/</span>
-	<a href="contactinfo.html">Контакты</a><span>/</span>
+	<a href="info.php">О нас</a><span>/</span>
+	<a href="contactinfo.php">Контакты</a>
 	<?
 	if(login())
 	{
-		echo"<a href='property_list.php'>Список недвижимости</a><span>";
+		echo"<span>/</span><a href='property_list.php'>Список недвижимости</a><span>";
 	}
 	?>
 </div>
@@ -33,7 +33,7 @@ $error = enter(); ?>
 	if(login())
     {    
 		$admin = isAdmin();
-		echo "<p>Добро пожаловать:</p>";echo $_COOKIE['user_login'];
+		echo "<p>Добро пожаловать:</p>";echo $_COOKIE['user_email'];
         echo "<form action='index.php' method='POST'>
 		<input type='submit' value='Выход' name = 'log_out' />
 	     </form>";
@@ -47,7 +47,7 @@ $error = enter(); ?>
     echo "
 	<legend><h2>Заполните форму авторизации</h2></legend>
 	<form action=''  method='POST'>
-		Логин<input type='text' name='user_login' value='' />
+		Логин<input type='text' name='user_email' value='' />
 		Пароль<input type='password' name='user_password' value='' />
 		<input type='submit' value='Войти' name = 'log_in' />
 	</form>	";

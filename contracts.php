@@ -19,7 +19,7 @@
 <div id="content">
 <?
 	$query = "SELECT * FROM contracts";
-	$result = executeRequest($query);
+	$result = userexecuteRequest($query);
 		
 		if(mysql_num_rows($result) > 0)
 		{

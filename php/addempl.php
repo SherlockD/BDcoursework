@@ -1,14 +1,19 @@
 <?
 include("autorization.php");
 
-$surname  = htmlspecialchars($_POST['surname'],ENT_QUOTES);
-$name = htmlspecialchars($_POST['name'],ENT_QUOTES);
-$patronymic  = htmlspecialchars($_POST['patronymic'],ENT_QUOTES);
-$birth_year = htmlspecialchars($_POST['birth_year'],ENT_QUOTES);
-$telephone  = htmlspecialchars($_POST['telephone'],ENT_QUOTES);
+$email  = mysql_real_escape_string($_POST['email']);
 
+$toisadmin = "UPDATE users SET is_admin = 1 where Email='$email'";
 
-$query = "INSERT INTO employees(surname,name,patronymic,birth_year,telephone) VALUES('$surname','$name','$patronymic','$birth_year','$telephone')";
+executeRequest($toisadmin);
+
+$userid = executeRequest("SELECT user_id FROM users WHERE Email='$email'");
+
+$userid = mysql_fetch_assoc($userid);
+
+$userid = $userid['user_id'];
+
+$query = "INSERT INTO employees(user_id,Date) VALUES('$userid',Now())";
 
 $result = executeRequest($query);
 

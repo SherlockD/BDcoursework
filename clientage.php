@@ -17,9 +17,18 @@
 </div>
 
 <div id="content">
+<form action='' method='POST'>
+		ID<input type='text' name='email' value='email' />
+		<input type='submit' value='Найти'/>
+</form>
 <?
-	$query = "SELECT * FROM clientage RIGHT JOIN users ON user_login = client_login";
-	$result = executeRequest($query);
+	$email = mysql_escape_string($_POST['email']);
+	
+	if($email!="email")
+	{
+		$query = "SELECT * FROM clientage RIGHT JOIN users ON users.user_id = clientage.user_id WHERE Email='$email'";
+		$result = userexecuteRequest($query);
+	}
 		
 		if(mysql_num_rows($result) > 0)
 		{
@@ -32,11 +41,11 @@
 			}
 			
 			printf("<table border='1'>");
-			printf("<tr><td>ID клиента</td><td>ФИО</td><td>Год рождения</td><td>Пол</td><td>Статус администратора</td></tr>");
+			printf("<tr><td>ID пользователя</td><td>ID клиента</td><td>Имя</td><td>Адрес</td><td>Почта</td></tr>");
 			foreach($rows as $value)
 			{
 				
-				printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",$value['client_id'],$value['fio'],$value['birth_year'],$value['gender'],$value['is_admin']);
+				printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",$value['user_id'],$value['client_id'],$value['Name'],$value['Address'],$value['Email']);
 				
 			}
 			printf("</table>");
@@ -44,16 +53,8 @@
 ?>
 
 <form action='php/deleteclient.php' method='POST'>
-		ID<input type='text' name='id' value='' />
+		Email<input type='text' name='email' value='' />
 		<input type='submit' value='Удалить'/>
-</form>
-
-<form action='php/editclient.php' method='POST'>
-		ID<input type='text' name='id' value='' />
-		ФИО<input type='text' name='fio' value='' />
-		ТИП<input type='text' name='type' value='' />
-		АДРЕС<input type='text' name='adress' value='' />
-		<input type='submit' value='Изменить'/>
 </form>
 
 </div>	

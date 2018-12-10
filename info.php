@@ -1,4 +1,4 @@
-<!DOCTYPE HTML> 
+﻿<!DOCTYPE HTML> 
 <html>
 
 <head>  <title>Магазин "Вечер в хату"</title>
@@ -10,7 +10,15 @@
 <div id="header">
 <i><a  href="index.php">Главная</a><span>/</span>
 	<a id="selected" href="#">О нас</a><span>/</span>
-	<a href="contactinfo.html">Контакты</a><span>
+	<a href="contactinfo.php">Контакты</a><span>
+	
+	<?
+	include("php/autorization.php");
+if(login())
+{
+echo"<a href='property_list.php'>Список недвижимости</a><span>";
+}
+?>
 </div>
 <div id="content">
 <div id= "box_text">

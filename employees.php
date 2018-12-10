@@ -19,12 +19,11 @@
 
 <div id="content ">
 <?
-	$query = "SELECT * FROM employees";
-	$result = executeRequest($query);
+	$query = "SELECT * FROM employees INNER JOIN users ON employees.user_id = users.user_id";
+	$result = userexecuteRequest($query);
 		
 		if(mysql_num_rows($result) > 0)
 		{
-			//$result = mysql_fetch_assoc($result);
 			
 			$rows = array();
 			while ($row = mysql_fetch_assoc($result)) 
@@ -32,11 +31,13 @@
 				$rows[] = $row; 
 			}
 			
-			printf("<table border='1'>");
+			printf("<table border='1'>
+					<tr><td>ID Работника</td><td>ID пользователя</td><td>Email</td><td>Дата</td></tr>
+			");
 			foreach($rows as $value)
 			{
 				
-				printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",$value['employee_id'],$value['surname'],$value['name'],$value['patronymic'],$value['birth_year'],$value['telephone']);
+				printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",$value['employee_id'],$value['user_id'],$value['Email'],$value['date']);
 				
 			}
 			printf("</table>");
@@ -44,16 +45,12 @@
 ?>
 
 <form action='php/deleteempl.php' method='POST'>
-		ID<input type='text' name='id' value='' />
+		Email<input type='text' name='id' value='' />
 		<input type='submit' value='Уволить'/>
 </form>
 
 <form action='php/addempl.php' method='POST'>
-		Фамилия<input type='text' name='surname' value='' />
-		Имя<input type='text' name='name' value='' />
-		Отчество<input type='text' name='patronymic' value='' />
-		Год рождения<input type='text' name='birth_year' value='' />
-		Телефон<input type='text' name='telephone' value='' />
+		Email<input type='text' name='email' value='' />		
 		<input type='submit' value='Взять на работу'/>
 </form>
 </div>

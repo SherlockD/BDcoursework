@@ -1,10 +1,10 @@
 <?
 include("autorization.php"); 
 
-$id = htmlspecialchars($_POST['id'],ENT_QUOTES);
-$userlogin = $_COOKIE['user_login'];
+$id = mysql_real_escape_string($_POST['id']);
+$useremail = $_COOKIE['user_email'];
 
-$take_id = "SELECT client_id FROM clientage WHERE client_login='$userlogin'";
+$take_id = "SELECT client_id FROM clientage INNER JOIN users ON clientage.user_id = users.user_id WHERE Email='$useremail'";
 
 $takeresult = executeRequest($take_id);
 

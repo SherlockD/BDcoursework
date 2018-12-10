@@ -1,7 +1,7 @@
 <?
 include("autorization.php");
 
-$id  = htmlspecialchars($_POST['id'],ENT_QUOTES);
+$id  = mysql_real_escape_string($_POST['id']);
 
 
 $query = "DELETE FROM contracts WHERE contract_id='$id'";

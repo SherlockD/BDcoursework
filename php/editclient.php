@@ -1,10 +1,10 @@
 <?
 include("autorization.php");
 
-$id  = htmlspecialchars($_POST['id'],ENT_QUOTES);
-$fio  = htmlspecialchars($_POST['fio'],ENT_QUOTES);
-$type  = htmlspecialchars($_POST['type'],ENT_QUOTES);
-$adress  = htmlspecialchars($_POST['adress'],ENT_QUOTES);
+$id  = mysql_real_escape_string($_POST['id']);
+$fio  = mysql_real_escape_string($_POST['fio']);
+$type  = mysql_real_escape_string($_POST['type']);
+$adress  = mysql_real_escape_string($_POST['adress']);
 
 
 $query = "UPDATE clientage SET fio='$fio',property_type='$type',property_adress='$adress'";

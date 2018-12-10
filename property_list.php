@@ -12,9 +12,14 @@ header('Content-Type: text/html; charset=utf-8');
 <body>
 <div id="header">
 <i><a href="index.php">Главная</a><span>/</span>
-<a href="contracts.html">Контракты</a><span>/</span>
-	<a href="clientage.html">Клиенты</a><span>/</span>
-	<a href="employees.html">Сотрудники</a><span>/</span>
+<?if(isAdmin()){
+	echo"
+<a href='contracts.php'>Контракты</a><span>/</span>
+	<a href='clientage.php'>Клиенты</a><span>/</span>
+	<a href='employees.php'>Сотрудники</a><span>/</span>
+	";
+	}
+	?>
 	<a id='selected' href='property_list.php'>Список недвижимости</a><span>
 	
 </div>

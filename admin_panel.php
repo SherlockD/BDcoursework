@@ -13,10 +13,10 @@
 {	
 echo "<div id='header'>
 <i><a href='index.php'>Главная</a><span>/</span>
-<a id='selected' href='#'>Контракты</a><span>/</span>
+<a  href='contracts.php'>Контракты</a><span>/</span>
 	<a href='clientage.php'>Клиенты</a><span>/</span>
-	<a href='employees.php'>Сотрудники</a><span>/</span>
-	
+	<a href='employees.php'>Сотрудники</a><span></span>
+	<a href='property_list.php'>Список недвижимости</a><span>
 </div>
 	<div id='content'>
  <p align='center'><img src='img/admin.jpg'></p>
